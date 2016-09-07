@@ -1,0 +1,143 @@
+---
+layout: default
+permalink: /your_ror_guide_for_ubuntu/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Language" content="en_US">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Setup Ruby On Rails on Ubuntu</title>
+
+	<script type="text/javascript" data-cfasync="false">
+		(function() {
+			var config = {
+				kitId: 'voa6eso',
+				scriptTimeout: 3000
+			};
+			var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+		})();
+	</script>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<body data-spy="scroll" data-target=".bs-sidebar">
+
+<div class="container">
+	<div class="bs-docs-container">
+		<div class="row">
+
+			<div class="col-md-2">
+				<div class="bs-sidebar hidden-print" role="complementary" data-spy="affix" data-offset-top="58">
+					<ul class="nav bs-sidenav">
+
+						<li><a href="#overview">Overview</a></li>
+						<li><a href="#ruby">Installing Ruby</a></li>
+						<li><a href="#rails">Installing Rails</a></li>
+					</ul>
+
+					<hr />
+				</div>
+			</div>
+
+			<div class="col-md-10" role="main">
+				<h1>Setup Ruby On Rails on Ubuntu </h1>
+				
+				<div class="bs-docs-section">
+					<h2 id="overview" class="page-header">Overview</h2>
+					<p><span class="estimated-time"><i class="fa fa-clock-o"></i> This will take about 30 minutes.</span></p>
+
+					<p>We will be setting up a Ruby on Rails development environment on Ubuntu Operating system.</p>
+					<p>The reason we're going to be using Ubuntu is because the majority of code you write will run on a Linux server. Ubuntu is one of the easiest Linux distributions to use with lots of documentation so it's a great one to start with.</p>
+					<p>You'll want to download the latest Desktop version here: <a href="http://releases.ubuntu.com/16.04/">http://releases.ubuntu.com/16.04/</a></p>
+				</div>
+
+				<section class="bs-docs-section">
+					<h2 id="ruby" class="page-header">Installing Ruby</h2>
+
+					<p>The first step is to install some dependencies for Ruby.</p>
+
+					<pre><code class="language-bash">sudo apt-get update <br>sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev</code></pre>
+
+						<p>Next we're going to be installing Ruby using one of three methods. Each have their own benefits, most people prefer using rbenv these days, but if you're familiar with rvm you can follow those steps as well. I've included instructions for installing from source as well, but in general, you'll want to choose either rbenv or rvm.</p>
+						<p><b>Choose one method</b>. Some of these conflict with each other, so choose the one that sounds the most interesting to you, or go with my suggestion, <b>rbenv</b>.</p>
+
+						<ul id="myTab" class="nav nav-tabs">
+							<li class="active"><a href="#ruby-rbenv" data-toggle="tab">Using rbenv (Recommended)</a></li>
+							<li><a href="#ruby-rvm" data-toggle="tab">Using rvm</a></li>
+							<li><a href="#ruby-source" data-toggle="tab">From source</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div class="tab-pane fade in active" id="ruby-rbenv">
+								<p>Installing with <code>rbenv</code> is a simple two step process. First you install <code>rbenv</code>, and then <code>ruby-build</code>:
+									<pre><code class="language-bash">cd <br>git clone https://github.com/rbenv/rbenv.git ~/.rbenv <br>echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc <br>echo 'eval "$(rbenv init -)"' >> ~/.bashrc <br>exec $SHELL <hr>git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build<br>echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc<br>exec $SHELL<hr>rbenv install <span class="ruby-version">2.3.1</span><br>rbenv global <span class="ruby-version">2.3.1</span><br>ruby -v</code></pre>
+
+									</div>
+									<div class="tab-pane fade" id="ruby-rvm">
+										<p>The installation for <code>rvm</code> is pretty simple:</p>
+										<pre><code class="language-bash">sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev<hr>gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3<hr>curl -sSL https://get.rvm.io | bash -s stable<hr>source ~/.rvm/scripts/rvm<hr>rvm install <span class="ruby-version">2.3.1</span><hr>rvm use <span class="ruby-version">2.3.1</span> --default<hr>ruby -v</code></pre>
+
+										</div>
+										<div class="tab-pane fade" id="ruby-source">
+											<p>Arguably the least useful Ruby setup for development is installing from source, but I thought I'd give you the steps anyways:</p>
+
+											<pre><code class="language-bash">cd<hr>wget http://ftp.ruby-lang.org/pub/ruby/<span class="major-minor">2.3</span>/ruby-<span class="ruby-version">2.3.1</span>.tar.gz<hr>tar -xzvf ruby-<span class="ruby-version">2.3.1</span>.tar.gz<hr>cd ruby-<span class="ruby-version">2.3.1</span>/<hr>./configure<hr>make<hr>sudo make install<hr>ruby -v</code></pre>
+											</div>
+										</div>
+
+										<p>The last step is to install Bundler</p>
+										<pre><code class="language-bash">gem install bundler</code></pre>
+
+										<p><b>rbenv users need to run</b><code>rbenv rehash</code><b>after installing bundler.</b></p>
+
+											<div class="bs-docs-section">
+												<h2 id="rails" class="page-header">Installing Rails</h2>
+
+												<p><strong>Choose the version of Rails you want to install:</strong></p>
+
+												<p>Since Rails ships with so many dependencies these days, we're going to need to install a Javascript runtime like NodeJS. This lets you use Coffeescript and the <a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> in Rails which combines and minifies your javascript to provide a faster production environment.</p>
+												<p>To install NodeJS, we're going to add it using the official repository:</p>
+
+												<p>The easiest way to install nodejs is to use your package manager and running this command in your termianl</p>
+
+												<pre><code>sudo apt-get install nodejs</code></pre>
+
+												<h4>if the above command doesn't work for you, you may try the below one</h4>
+
+												<pre><code class="language-bash">curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash - <hr>sudo apt-get install -y nodejs</code></pre>
+
+													<p>And finally, install rails</p>
+
+													<pre><code class="language-bash">gem install rails --version 5.0.0</code></pre>
+
+													<p>If you're using rbenv, you'll need to run the following command to make the rails executable available:</p>
+													<pre><code class="language-bash">rbenv rehash</code></pre>
+
+													<p>Now that you've installed Rails, you can run the <code>rails -v</code> command to make sure you have everything installed correctly:</p>
+
+													<pre><code class="language-bash">rails -v <br># Rails <span class="rails-version">5.0.0</span></code></pre>
+													<p>If you get a different result for some reason, it means your environment may not be setup properly.</p>
+												</div>
+											</p>
+										</div>
+									</p>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
