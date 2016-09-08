@@ -1,0 +1,97 @@
+---
+layout: default
+permalink: /your_ror_guide_for_mac/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Language" content="en_US">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Setup Ruby On Rails on MacOS</title>
+
+	<script type="text/javascript" data-cfasync="false">
+		(function() {
+			var config = {
+				kitId: 'voa6eso',
+				scriptTimeout: 3000
+			};
+			var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+		})();
+	</script>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<body data-spy="scroll" data-target=".bs-sidebar">
+
+<div class="container">
+	<div class="bs-docs-container">
+		<div class="row">		
+		<div class="col-md-10" role="main">
+			<h1>Setup Ruby On Rails on MacOS </h1>
+				
+				<div class="bs-docs-section">
+					<h2 id="overview" class="page-header">Overview</h2>
+					<p><span class="estimated-time"><i class="fa fa-clock-o"></i> This will take about 30 minutes.</span></p>
+
+					<p>Older versions of OS X are mostly compatible so follow along as far as you can and then Google search for any problems you run into. There are plenty of people who have documented solutions for them.</p>
+				</div>
+
+				<section class="bs-docs-section">
+					<h2 id="ruby" class="page-header">Installing Homebrew</h2>
+
+					<p>First, we need to install Homebrew. Homebrew allows us to install and compile software packages easily from source. Homebrew comes with a very simple install script. When it asks you to install XCode CommandLine Tools, say yes. Open Terminal and run the following command:</p>
+
+					<pre><code class="language-bash">ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code></pre>
+
+						<p>Next we're going to be installing Ruby using one of three methods. Each have their own benefits, most people prefer using rbenv these days, but if you're familiar with rvm you can follow those steps as well. I've included instructions for installing from source as well, but in general, you'll want to choose either rbenv or rvm.</p>
+						<p><b>Choose one method</b>. Some of these conflict with each other, so choose the one that sounds the most interesting to you, or go with my suggestion, <b>rbenv</b>.</p>
+
+						<h2 id="ruby" class="page-header">Installing Ruby</h2>
+						<p>Now that we have Homebrew installed, we can use it to install Ruby. We're going to use rbenv to install and manage our Ruby versions. To do this, run the following commands in your Terminal:</p>
+
+						<pre><code>brew install rbenv ruby-build
+
+# Add rbenv to bash so that it loads every time you open a terminal
+echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_profile
+source ~/.bash_profile
+
+# Install Ruby
+rbenv install 2.3.1
+rbenv global 2.3.1
+ruby -v</code></pre>
+
+											<div class="bs-docs-section">
+												<h2 id="rails" class="page-header">Installing Rails</h2>
+
+													<pre><code class="language-bash">gem install rails --version 5.0.0</code></pre>
+
+													<p>If you're using rbenv, you'll need to run the following command to make the rails executable available:</p>
+													<pre><code class="language-bash">rbenv rehash</code></pre>
+
+													<p>Now that you've installed Rails, you can run the <code>rails -v</code> command to make sure you have everything installed correctly:</p>
+
+													<pre><code class="language-bash">rails -v <br># Rails <span class="rails-version">5.0.0</span></code></pre>
+													<p>If you get a different result for some reason, it means your environment may not be setup properly.</p>
+												</div>
+											</p>
+										</div>
+									</p>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
