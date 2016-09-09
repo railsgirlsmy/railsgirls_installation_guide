@@ -1,0 +1,157 @@
+---
+layout: default
+permalink: /your_ror_guide_for_windows/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Language" content="en_US">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Setup Ruby On Rails on Windows</title>
+
+	<script type="text/javascript" data-cfasync="false">
+		(function() {
+			var config = {
+				kitId: 'voa6eso',
+				scriptTimeout: 3000
+			};
+			var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+		})();
+	</script>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<body data-spy="scroll" data-target=".bs-sidebar">
+
+<div class="container">
+	<div class="bs-docs-container">
+		<div class="row">		
+		<div class="col-md-10" role="main">
+			<h1>Setup Ruby On Rails on Windows</h1>
+				
+				<div class="bs-docs-section">
+					<h2 id="overview" class="page-header">Overview</h2>
+					<p><span class="estimated-time"><i class="fa fa-clock-o"></i> This will take about 30 minutes (Sometimes forever).</span></p>
+
+					<h3>Here is a little fact, installing rails on windows is quite hard yaw, anyway, the tutorial is below there somewhere for you. However, once upon a time, when I started developing rails app, I was using windows, and god send cloud9 and nitrous.io to save me, and I would recommend you to use nitrous.io (cause it free, daaa). If you are interested to install everything just read through, but if you want to use the cloud IDE, <a href="#cloud">go here</a> anyway...</h3>
+
+					<ul>
+						<li>We’ll use a program called “Ruby Installer” to install the Ruby programming language.</li>
+						<li>Then we’ll use Rubygems, a tool that’s included with our Ruby installation, to automatically download and install the Rails library</li>
+						<li>We’ll install a Ruby “Development Kit” that Rails needs to work correctly.</li>
+						<li>Lastly, since Rails includes several JavaScript-based features, we’re going to need a JavaScript runtime. So we’ll install Node.js.</li>
+					</ul>
+				</div>
+
+				<section class="bs-docs-section">
+					<h2 id="ruby" class="page-header">Installing Ruby</h2>
+
+					<p>First, we need an installation of the Ruby programming language.</p>
+
+						<ul>
+							<li>Download and run Ruby Installer from rubyinstaller.org.</li>
+							<li>Allow the download to finish, then go to your Downloads folder, and open the “rubyinstaller” program. An installation wizard will open. Check “Add Ruby executables to your PATH”, then click Install. Wait while the installer runs, and click Finish when done.</li>
+							<li>To access Ruby, go to the Windows menu, click All Programs, scroll down to Ruby, and click “Start Command Prompt with Ruby”. A command prompt terminal will open. If you type ruby -v and press Enter, you should see the Ruby version number that you installed.</li>
+						</ul>
+
+						<p>At this point, we could attempt to install Rails. But some of the libraries Rails depends on need some “build tools” in order to be compiled, and Windows lacks those tools by default. So to fix that you need the ruby development kit.</p>
+
+						<ul>
+							<li>Download the Ruby Development Kit. (This download also originates from rubyinstaller.org, and is also hosted on bintray.com.)</li>
+							<li>When it’s done, go to your downloads folder and double-click the DevKit executable.</li>
+							<li>We need to specify a folder where we’re going to permanently install the DevKit. I recommend installing it in the root of your hard drive, at “C:\RubyDevKit“. (Don’t use spaces in the directory name.)</li>
+						</ul>
+
+						<p>Now make the ruby dev kit available to Ruby</p>
+
+						<ul>
+							<li>Back in your command prompt, change to the the DevKit directory. (“Directory” is another name for a folder.) Type “cd C:\RubyDevKit“, or whatever other directory name you installed it in.</li>Back in your command prompt, change to the the DevKit directory. (“Directory” is another name for a folder.) Type “cd C:\RubyDevKit“, or whatever other directory name you installed it in.
+							<li>Next we need to run a Ruby script to initialize the DevKit setup. Type “ruby dk.rb init“.</li>
+							<li>Now we’ll tell that same script to add the DevKit to our Ruby installation. Type “ruby dk.rb install“.</li>
+						</ul>
+
+						<p>Now your ruby and its dev kit has meet each other, yayy!!</p>
+
+						<div class="bs-docs-section">
+							<h2 id="rails" class="page-header">Installing Rails</h2>
+
+							<p>Time to install rails yaw. Rails is a 'gem' for ruby, so install the gem into your computer using the gem tool. In your command prompt, type the following</p>
+
+								<pre><code class="language-bash">gem install rails --version 5.0.0</code></pre>
+
+								<p>Once you press Enter, the “gem” program will download and install that version of the Rails gem, along with all the other gems Rails depends on.</p>
+						</div>
+
+						<div class="bs-docs-section">
+							<h2 id="rails" class="page-header">Installing NodeJS</h2>
+
+							<p>Stay strong windows dev, there is one last thing you need to install. As some(ok... mostly) libraries that Rails depends on require a JavaScript runtime. so we need to install nodeJS</p>
+
+								<ul>
+									<li>Download the Node.js installer.</li>
+									<li>Install it.When the installation is complete, you’ll need to restart your computer so Rails can access Node.js.</li>
+								</ul>
+
+								<p>Finally, Once your computer restarts, don’t forget to go to the Windows menu, click “All Programs”, scroll down to Ruby, and click “Start Command Prompt with Ruby”.</p>
+						</div>
+
+						<div class="bs-docs-section">
+							<h2 id="cloud" class="page-header">Using Cloud IDE's</h2>
+
+							<h2>Nitrous.io</h2>
+
+								<p>Visit the <a href="https://www.nitrous.io/">nitrous.io</a> page.</p>
+								<p><a href="https://www.nitrous.io/app/#/signup">Click</a> on Sign Up button</p>
+								<img src="../_pages/images/signup.png" alt="">
+
+								<p>Fill all the required fields.</p>
+
+								<p>It will ask you to choose the workstation that you want, just choose the free one, select Asia region and press the create workstation button</p>
+								<img src="../_pages/images/workstation.png" alt="">
+
+								<p>Then nitrous.io will create your workstation, just let it load, pray to god that the internet is fast so it doesn't take long time.</p>
+
+								<p>Once the workstation is created, you will be taken to the projects dashboard page, if this is your first time, your dashboard will be empty. So now press on the plus(+) icon on the dashboard.</p>
+
+								<img src="../_pages/images/dashboard.png" alt="">
+
+								<p>After pressing the plus(+) button, create a new project screen will be awarded to you, Fill in the name of the project, and the select <b>Ruby on Rails</b>, and then press the create project button.</p>
+
+								<img src="../_pages/images/new_proj.png" alt="">
+
+								<p>Then it will tell you that it is building your project workstation and etc stuff, just smile and look at your screen. Once the station is ready, you will be notified. So click on Open IDE button to enter the world of writing the code :)</p>
+
+								<p>Once everything is loaded, you will see a readme on the IDE, just read it as the readme is about starting up a new rails project.</p>
+
+								<img src="../_pages/images/ide.png" alt="">
+
+								<ul>
+									<li>The bar on your left is your file hierarchy. You will learn all about the folders and files as you go with the flow.</li>
+									<li>The middle part is where you will write all the code. The small bar above the large space is where all the file name will be shown.</li>
+									<li>Lastly, the bottom part, the dark side is the terminal, in ruby on rails development, terminal plays a very important role. This is where you generate all sorts of stuff for your project. Chill, you will learn it in a while.</li>
+								</ul>
+								
+								<p>So yeah, you have successfully setup your nitrous.io, way easier than installing all the other stuff. Goodluck and happy coding.</p>
+						</div>
+					</p>
+				</div>
+			</p>
+		</div>
+	</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
